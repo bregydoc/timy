@@ -17,3 +17,15 @@ type EventType struct {
 	CreatedAt   time.Time
 	Occurrences int64
 }
+
+type EventRootUpdate struct {
+	Name *string
+}
+
+type EventTypeUpdate struct {
+	Name        *string
+	RootID      *string
+	Identifier  *string
+	CreatedAt   *time.Time
+	Occurrences *int64
+}

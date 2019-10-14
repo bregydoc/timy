@@ -69,9 +69,69 @@ func (bag *InfluxBag) RegisterNewEventType(c context.Context, eventType *EventTy
 	)
 }
 
+// UpdateEventRoot implements the bag interface
+func (bag *InfluxBag) UpdateEventRoot(c context.Context, eventRootID string, update *EventRootUpdate) error {
+	eventRoot, err := bag.getEventRoot(eventRootID)
+	if err != nil {
+		return err
+	}
+
+	if update == nil {
+		return nil
+	}
+
+	if update.Name != nil {
+		eventRoot.Name = *update.Name
+	}
+
+	return bag.indexEventRoot(eventRootID, eventRoot.Name)
+
+}
+
+// UpdateEventType implements the bag interface
+func (bag *InfluxBag) UpdateEventType(c context.Context, eventTypeID string, update *EventTypeUpdate) error {
+	eventType, err := bag.getEventType(eventTypeID)
+	if err != nil {
+		return err
+	}
+
+	if update == nil {
+		return nil
+	}
+
+	if update.Name != nil {
+		eventType.Name = *update.Name
+	}
+
+	if update.RootID != nil {
+		eventType.RootID = *update.RootID
+	}
+
+	if update.Identifier != nil {
+		eventType.Identifier = *update.Identifier
+	}
+
+	if update.CreatedAt != nil {
+		eventType.CreatedAt = *update.CreatedAt
+	}
+
+	if update.Occurrences != nil {
+		eventType.Occurrences = *update.Occurrences
+	}
+
+	return bag.indexEventType(
+		eventTypeID,
+		eventType.Name,
+		eventType.RootID,
+		eventType.Identifier,
+		eventType.CreatedAt,
+		eventType.Occurrences,
+	)
+}
+
 // RegisterNewEntry implements the bag interface
 func (bag *InfluxBag) RegisterNewEntry(c context.Context, entry *Entry) error {
-
+	return nil // TODO: Implement that
 }
 
 // VerifyIfEventRootExist implements the bag interface
