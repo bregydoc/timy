@@ -12,7 +12,7 @@ type EventRoot struct {
 type EventType struct {
 	ID          string
 	Name        string
-	Root        EventRoot
+	RootID      string
 	Identifier  string
 	CreatedAt   time.Time
 	Occurrences int64
