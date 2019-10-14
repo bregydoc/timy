@@ -131,7 +131,7 @@ func (bag *InfluxBag) UpdateEventType(c context.Context, eventTypeID string, upd
 
 // RegisterNewEntry implements the bag interface
 func (bag *InfluxBag) RegisterNewEntry(c context.Context, entry *Entry) error {
-	return nil // TODO: Implement that
+	return bag.newInfluxMetricRow(c, bag.client, entry, false)
 }
 
 // VerifyIfEventRootExist implements the bag interface

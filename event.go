@@ -18,10 +18,12 @@ type EventType struct {
 	Occurrences int64
 }
 
+// EventRootUpdate is a payload to update your event root
 type EventRootUpdate struct {
 	Name *string
 }
 
+// EventTypeUpdate is a payload to update your event root type
 type EventTypeUpdate struct {
 	Name        *string
 	RootID      *string

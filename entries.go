@@ -6,7 +6,7 @@ import "time"
 type Entry struct {
 	ID        string
 	At        time.Time
-	Type      EventType
+	TypeID    string
 	Modifiers map[string]interface{}
 	Value     int64
 }
